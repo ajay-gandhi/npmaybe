@@ -1,0 +1,28 @@
+{
+  "name": "npmaybe",
+  "version": "0.0.1",
+  "description": "Test NPM modules without installing them",
+  "main": "app.js",
+  "bin": {
+    "npmaybe": "./app.js"
+  },
+  "keywords": [
+    "test",
+    "npm",
+    "module"
+  ],
+  "dependencies": {
+    "fs-extra-promise": "^0.2.0",
+    "meow": "^3.3.0",
+    "os-tmpdir": "^1.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/ajay-gandhi/npmaybe"
+  },
+  "author": "Ajay Gandhi",
+  "license": "ISC"
+}
