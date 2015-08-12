@@ -22,9 +22,9 @@ var chalk = require('chalk');
 console.log(chalk.green('Hello World'));
 ```
 
-Run your file with `npmaybe`, followed by a list of modules the file needs:
+Run your file with `npmaybe`:
 
-    $ npmaybe index.js chalk
+    $ npmaybe index.js
 
 `npmaybe` will run your file with the required dependencies.
 
@@ -37,10 +37,12 @@ to uninstall them...
 
 ## How
 
-NPMaybe first installs the dependencies you list in a temporary directory on
-your OS. If you specify, these dependencies can be removed as soon as your
-script finishes, otherwise they will be deleted when you reboot.
+First, NPMaybe takes a look at which dependencies you need using
+[required](https://github.com/defunctzombie/node-required). Then, NPMaybe
+installs those dependencies in a temporary directory on your OS. If you specify,
+these dependencies can be removed as soon as your script finishes, otherwise
+they will be deleted when you reboot.
 
-Then, NPMaybe looks at your file and substitutes the `require` references with
-the location the dependencies are. Lastly, NPMaybe spawns your script as a child
-process.
+To use the dependencies, NPMaybe substitutes the `require` references with
+the location the temporary dependencies, creating a new file in the same
+directory. Lastly, NPMaybe spawns your script as a child process.

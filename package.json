@@ -1,6 +1,6 @@
 {
   "name": "npmaybe",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Test NPM modules without installing them",
   "main": "app.js",
   "bin": {
@@ -14,7 +14,8 @@
   "dependencies": {
     "fs-extra-promise": "^0.2.0",
     "meow": "^3.3.0",
-    "os-tmpdir": "^1.0.1"
+    "os-tmpdir": "^1.0.1",
+    "required": "^1.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
