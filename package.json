@@ -1,6 +1,6 @@
 {
   "name": "npmaybe",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Test NPM modules without installing them",
   "main": "app.js",
   "bin": {

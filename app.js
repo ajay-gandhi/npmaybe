@@ -5,7 +5,8 @@ var meow      = require('meow'),
     osTmp     = require('os-tmpdir'),
     fs        = require('fs-extra-promise'),
     detective = require('detective'),
-    spawn     = require('child_process').spawn;
+    spawn     = require('child_process').spawn,
+    path      = require('path');
 
 var tmp = osTmp() + '/npmaybe';
 
@@ -47,7 +48,7 @@ fs
     // Want non native modules
     var natives = Object.keys(process.binding('natives'));
     var modules = requires.filter(function (m) {
-      return (natives.indexOf(m) < 0);
+      return (natives.indexOf(m) < 0 && m.indexOf('./') < 0);
     });
 
     // NPM install to tmp dir
@@ -55,20 +56,22 @@ fs
 
     install.on('close', function () {
 
-      var rand_fname = '.' + Math.random().toString(36).substr(2, 5) + file;
+      var rand_fname = '.' + Math.random().toString(36).substr(2, 5);
+          rand_fname += path.basename(file);
 
       // Edit require reference
       fs
         .readFileAsync(file)
         .then(function (data) {
           data = data.toString();
-          for (var i = 0, module = modules[i]; i < modules.length; i++) {
+          for (var i = 0; i < modules.length; i++) {
+            var module = modules[i];
+
             // Installing from GitHub
-            if (module.indexOf('/') >= 0)
-              m_name = module.match(/\/(.*?)$/)[1];
+            if (module.indexOf('/') >= 0) m_name = module.match(/\/(.*?)$/)[1];
 
             // From NPM repo
-            else                      m_name = module;
+            else m_name = module;
 
             data = data.replace(module, tmp + '/node_modules/' + m_name);
           }
